@@ -1,9 +1,27 @@
-
 import os
+import sys
+import subprocess
+
+# Ensure scikit-learn is installed
+try:
+    from sklearn.linear_model import LinearRegression
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "scikit-learn"])
+    from sklearn.linear_model import LinearRegression
+
 import pandas as pd
 import streamlit as st
 import datetime
 import calendar
+def install_required_packages():
+    required_packages = ['scikit-learn']
+    for package in required_packages:
+        try:
+            __import__(package)
+        except ImportError:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install_required_packages()
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
